@@ -23,3 +23,12 @@ Syntax:
 Implementation:
 
 This is a cool [website](http://www.pinkbike.com).
+
+Example of embedding an image
+
+Syntax:
+
+```
+![](URL)
+```
+
