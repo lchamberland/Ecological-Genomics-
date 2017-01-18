@@ -15,9 +15,11 @@ Syntax for creating a list
 * Item 3   
 ```
 
-Example of embedding a URL:
-Syntax:
+Example of embedding a URL:   
+Syntax:   
 ```
 [hyper linked words](http://www.pinkbike.com)
 ```
 Implementation:
+
+[hyper linked words](http://www.pinkbike.com)
