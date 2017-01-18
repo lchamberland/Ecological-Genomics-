@@ -33,4 +33,4 @@ Syntax:
 ```
 
 This is a picture.   
-![]()
+![](https://cloud.githubusercontent.com/assets/21958390/22071930/b9347194-dd6e-11e6-987a-0735adb739c4.jpeg)
