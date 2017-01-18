@@ -22,4 +22,4 @@ Syntax:
 ```
 Implementation:
 
-[hyperlinked words](http://www.pinkbike.com)
+This is a cool [website.](http://www.pinkbike.com)
