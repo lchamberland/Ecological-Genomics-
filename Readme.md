@@ -44,3 +44,9 @@ library(data.table)
 dat<-fread("csvfile")
 #making a table
 knit::kable(dat)
+
+This is how you create an R chunk 
+```{r}
+str(dat)
+plot(dat$latitdue,dat$longitude
+```
