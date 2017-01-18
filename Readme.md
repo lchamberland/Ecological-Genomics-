@@ -18,8 +18,8 @@ Syntax for creating a list
 Example of embedding a URL:   
 Syntax:   
 ```
-[hyper linked words](http://www.pinkbike.com)
+[hyperlinked words](http://www.pinkbike.com)
 ```
 Implementation:
 
-[hyper linked words](http://www.pinkbike.com)
+[hyperlinked words](http://www.pinkbike.com)
