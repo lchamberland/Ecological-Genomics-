@@ -1,5 +1,8 @@
 # Read me file
 
+## Smaller header   
+### Even smaller header   
+
 # Annotating the ecological genomics course 
 
 Create a list:   
