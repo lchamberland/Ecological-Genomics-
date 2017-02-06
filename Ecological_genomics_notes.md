@@ -96,7 +96,7 @@
 
 
 
-# 2016.02.06 - coding - RNAseq data  
+# *2016.02.06* - coding - RNAseq data  
 
 login to server 
 
@@ -218,5 +218,24 @@ to run file
 ./filename or bash.filename
 ```
 
+Output for my data files 
 
+*[lchambe1@pbio381 scripts]$ ll*
 
+*total 4*
+
+*-rwxr--r--. 1 lchambe1 users 809 Feb  6 11:33 trim_example.sh*
+
+[lchambe1@pbio381 scripts]$ ./trim_example.sh 
+
+*TrimmomaticPE: Started with arguments: -threads 1 -phred33 /data/project_data/fastq/105-11H0R1.fq.gz /data/project_data/fastq/105-11H0R2.fq.gz /data/project_data/fastq/cleanreads/105-11H0R1clean_paired.fq /data/project_data/fastq/cleanreads/105-11H0R1clean_unpaired.fq /data/project_data/fastq/cleanreads/105-11H0R2clean_paired.fq /data/project_data/fastq/cleanreads/105-11H0R2clean_unpaired.fq ILLUMINACLIP:/data/popgen/Trimmomatic-0.33/adapters/TruSeq3-PE.fa:2:30:10 LEADING:28 TRAILING:28 SLIDINGWINDOW:6:28 HEADCROP:9 MINLEN:35*
+
+*Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'*
+
+*ILLUMINACLIP: Using 1 prefix pairs, 0 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences*
+
+*Input Read Pairs: 23373711 Both Surviving: 19911093 (85.19%) Forward Only Surviving: 2539010 (10.86%) Reverse Only Surviving: 356754 (1.53%) Dropped: 566854 (2.43%)*
+
+*TrimmomaticPE: Completed successfully*
+
+*[lchambe1@pbio381 scripts]$* 
