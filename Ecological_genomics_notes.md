@@ -212,7 +212,7 @@ escape
 
 file is executable if it is lit up green
 
-to run file 
+to run/execute file 
 
 ```
 ./filename or bash.filename
@@ -221,6 +221,106 @@ to run file
 Output for my data files 
 
 *[lchambe1@pbio381 scripts]$ ll*
+<<<<<<< Updated upstream
+=======
+
+*total 4*
+
+*-rwxr--r--. 1 lchambe1 users 809 Feb  6 11:33 trim_example.sh*
+
+[lchambe1@pbio381 scripts]$ ./trim_example.sh 
+
+*TrimmomaticPE: Started with arguments: -threads 1 -phred33 /data/project_data/fastq/105-11H0R1.fq.gz /data/project_data/fastq/105-11H0R2.fq.gz /data/project_data/fastq/cleanreads/105-11H0R1clean_paired.fq /data/project_data/fastq/cleanreads/105-11H0R1clean_unpaired.fq /data/project_data/fastq/cleanreads/105-11H0R2clean_paired.fq /data/project_data/fastq/cleanreads/105-11H0R2clean_unpaired.fq ILLUMINACLIP:/data/popgen/Trimmomatic-0.33/adapters/TruSeq3-PE.fa:2:30:10 LEADING:28 TRAILING:28 SLIDINGWINDOW:6:28 HEADCROP:9 MINLEN:35*
+
+*Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'*
+
+*ILLUMINACLIP: Using 1 prefix pairs, 0 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences*
+
+*Input Read Pairs: 23373711 Both Surviving: 19911093 (85.19%) Forward Only Surviving: 2539010 (10.86%) Reverse Only Surviving: 356754 (1.53%) Dropped: 566854 (2.43%)*
+
+*TrimmomaticPE: Completed successfully*
+
+*[lchambe1@pbio381 scripts]$* 
+
+
+
+scp 
+
+
+
+## *2016.02.08* - Transcriptomics
+
+### Paper Discussion - Laura 
+
+De Panis, D.N., Padró, J., Furió‐Tarí, P., Tarazona, S., Milla Carmona, P.S., Soto, I.M., Dopazo, H., Conesa, A. and Hasson, E., 2016. Transcriptome modulation during host shift is driven by secondary metabolites in desert Drosophila. *Molecular Ecology*, *25*(18), pp.4534-4550.
+
+
+
+Experimental design
+
+* samples collected in environment
+* biological replicates - 3 lines - 3 different inversions 
+* 4 treatments - 2 assess host plant effect, 2 assess
+
+
+
+### Coding 
+
+Goals today
+
+* finish cleaning (trimmomatic)
+* fastqc(visualize)
+* make table of number of reads
+* design assembly tests 
+* start assemblies
+* evaluate assembly 
+* Script 
+  * paths 
+    * program 
+    * input 
+    * output
+  * filename
+    * in 
+    * out 
+* Moving through directories
+  * moving files 
+  * scp - secure copy to move from server to your pc 
+* executing scripts 
+* calling program 
+
+
+
+to rename old file name to a new filename 
+
+```
+mv old_filename new_filename 
+```
+
+to clean and create output html file 
+
+* *this will put your cleaned file in whatever directory you are in*
+
+```
+fastqc filename.fq.gz
+```
+
+Move .html file to your computer desktop using the **scp** command (*open another terminal*)
+
+```
+scp lchambe1@pbio381.uvm.edu:/data/project_data/fastq/filename.html ~/Desktop/
+```
+
+What will affect making our assembly 
+
+* using paired reads 
+* number of reads 
+
+Starting a de novo assembly using Trinity 
+
+```
+$ /data/program/trini
+```
+>>>>>>> Stashed changes
 
 *total 4*
 
