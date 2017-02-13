@@ -168,7 +168,7 @@ vim filename
 ```
 
 ```
-       java -classpath /data/popgen/Trimmomatic-0.33/trimmomatic-0.33.jar org.usadellab.trimmomatic.TrimmomaticPE \
+java -classpath /data/popgen/Trimmomatic-0.33/trimmomatic-0.33.jar org.usadellab.trimmomatic.TrimmomaticPE \
                 -threads 1 \
                 -phred33 \
                  /data/project_data/fastq/10_5-11_H_0_R1.fq.gz \
@@ -221,8 +221,8 @@ to run/execute file
 Output for my data files 
 
 *[lchambe1@pbio381 scripts]$ ll*
-<<<<<<< Updated upstream
-=======
+
+Updated upstream
 
 *total 4*
 
@@ -339,3 +339,70 @@ $ /data/program/trini
 *TrimmomaticPE: Completed successfully*
 
 *[lchambe1@pbio381 scripts]$* 
+
+
+
+## *2016.02.13* - Transcriptomics 3 
+
+### Info Update - Lauren
+
+**Glossary**
+
+- sequence coverage - the average nuber of reads that align/"cover" known reference bases
+- read depth - total numer of bases sequenced/aligned at given reference base position 
+- transitional noise - unexplained variation/ randomness 
+- power - probability of rejecting false null hypothesis
+- biological variation - natural variation in gene 
+
+Background
+
+* enables DE examination (inter-population individual)
+
+  * disease resistance
+  * mating behavior 
+  * adaptive significance
+
+* molecular mechanisms —> phenotypic/ behavioral plasticity, migration patterns
+
+* limitations 
+
+  * ref. genome quality 
+  * gene annotation availability
+  * expence per sample 
+  * lib preb
+
+* Issues 
+
+  * under utilization of biological replicates
+    * requiring indep library preparations
+    * doesn't include pooled samples
+    * 23/158 studies (%15) > 3 biological reps
+    * devise broad bio conclusions
+  * prioritize seq depth over replication <— problem 
+  * wide dynamic range of RNA - seq data 
+    * noisy 
+      * poisson counting error
+      * technicla variance
+      * biological variance 
+        * **lower variance gives you higher power** 
+
+  General rules of thumb
+
+  1. use more bio. replicates instead of depth
+
+  2. sequence depth > 10 reads/ transcript 
+
+     a. ~10 - 20 M mapped reads/samples
+
+  3. 3 biological replicates per conditions 
+
+  4. conduct a pilot experiment 
+
+     a. what is best/ powerful experiment I can afford?
+
+     b. what is the smallest fold change I can detect 
+
+  ​
+
+
+
