@@ -1,8 +1,46 @@
+# Online Notebook
 
+### Author: Lisa Chamberland
 
-## Ecological Genomics
+### Ecological Genomics:
 
-## *2016.02.06* - RNAseq
+## Overall Description of notebook
+
+fill in your description here!
+
+## Date started: (2017-02-06)
+
+## Date end:   (2017-02-15)
+
+## Philosophy
+
+Science should be reproducible and one of the best ways to achieve this is by logging research activities in a notebook. Because science/biology has increasingly become computational, it is easier to document computational projects in an electronic form, which can be shared online through Github.    
+
+### Table of contents for 10 entries (Format is *Page: Date(with year-month-day). Title*)
+
+- [Page 1: 2017-02-06](#id-section1). RNAseq
+
+- [Page 2: 2017-02-08](#id-section2). Transcriptomics
+
+- [Page 3: 2017-02-13](#id-section3). Transcriptomics 2
+
+- [Page 4: 2017-02-15](#id-section4) Transcriptomics 3
+
+- [Page 5:](#id-section5).
+
+- [Page 6:](#id-section6).
+
+- [Page 7:](#id-section7).
+
+- [Page 8:](#id-section8).
+
+- [Page 9:](#id-section9).
+
+  ___________
+
+  <div id='id-section1'/>
+
+## Page 1: 2017-02-06. RNAseq
 
 ### Info update - Melissa 
 
@@ -95,8 +133,7 @@
 * Choose statistal test and stick with it or make it a comparison 
 
 
-
-# *2016.02.06* - coding - RNAseq data  
+### Coding 
 
 login to server 
 
@@ -246,9 +283,11 @@ Updated upstream
 
 scp 
 
+______
 
+<div id='id-section2'/>
 
-## *2016.02.08* - Transcriptomics
+## Page 2: 2017-02-08. Transcriptomics
 
 ### Paper Discussion - Laura 
 
@@ -340,9 +379,11 @@ $ /data/program/trini
 
 *[lchambe1@pbio381 scripts]$* 
 
+______
 
+<div id='id-section3'/>
 
-## *2016.02.13* - Transcriptomics 3 
+## Page 3: 2017-02-13. Transcriptomics 3 
 
 ### Info Update - Lauren
 
@@ -400,9 +441,106 @@ Background
 
      a. what is best/ powerful experiment I can afford?
 
-     b. what is the smallest fold change I can detect 
+     b. what is the smallest fold change I can detect
 
-  ​
+  ### Paper Discussion - Sam 
+
+  *Johnston et al. 2016 Seasonal gene expression in migratory songbird* 
+
+* Tissue matters 
+
+* statistical issues
+
+  * number of reps
+  * power coming from the 31-48 million reads 
+
+### Coding
+
+Open reading frame - starts with a start codon and ends with a stop codon 
+
+* used to find complete transcripts and the longest ones
+
+bwa - program for mapping reads 
+
+quit/stop a program
+
+```
+ctrl c 
+```
 
 
+
+
+
+```
+screen 
+```
+
+ ```
+screen - r 
+ ```
+
+______
+
+<div id='id-section4'/>
+
+## Page 4: 2017-02-15. Transcriptomics 4
+
+### Info Update - Sam
+
+SNPs and population genomics 
+
+SNP data - expressed sequences
+
+tissue -> sequence -> clean/trim -> assembly -> SNP detection/ validation => practical applications
+
+1. Tissue
+   * breadth of tissue, developmental stages because of exon skipping
+2. pool and sequence libraries
+   * ~30 -100 m paired end long reads
+3. process raw sequence data
+   * important for the SNP detection 
+4. digital normilization 
+   * remove high coverage reads and associated errors 
+   * loss of quantitative info 
+5. Assemble cleaned pair end long reads
+6. Prune 
+   * reduce DNA contamination, non coding RNA, gene fragments 
+7. Assembly evaluation 
+   * reference genome if you have on e
+   * COGS - concerved eukaryotic ortholoc genes 
+
+SNP detection
+
+* software - constant patters of sequenc variation 
+  * Problems
+    * sequence error - software eliminates SNPs of low frequency 
+    * artifacts caused by INDELs (insertions or deletions)
+      * filter SNP clusters near INDELS 
+      * quality scores 
+* Validation 
+  * primers 
+  * sequencing using mas spec 
+
+Applications
+
+* differences in population structure
+* natural selection acting on a particular loci 
+
+1. outliers - for a given locus, what's the level of differentiation compared to differentiation accross the genome - looking at Fst values that are at the end of the normal distribution and assumes directional selection 
+2. non-outlier - tests high Fst loci for other features associated with selection 
+   * fitness 
+   * enrichment for in functional roles 
+
+RPKM - reads per kilobase transcript per million
+
+* normalizing - scaling and comparing them based on expression instead of size 
+
+
+
+References for samples that I need to check.
+
+```
+10_5-11_H_0_R1.cl.pd.fq  10_5-11_H_0_R1.cl.un.fq  
+```
 
