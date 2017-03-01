@@ -26,9 +26,9 @@ Science should be reproducible and one of the best ways to achieve this is by lo
 
 - [Page 4: 2017-02-15](#id-section4) Transcriptomics 3
 
-- [Page 5:](#id-section5).
+- [Page 5:](#id-section5) Transcriptomics 4
 
-- [Page 6:](#id-section6).
+- [Page 6:](#id-section6) 
 
 - [Page 7:](#id-section7).
 
@@ -542,5 +542,151 @@ References for samples that I need to check.
 
 ```
 10_5-11_H_0_R1.cl.pd.fq  10_5-11_H_0_R1.cl.un.fq  
+```
+
+### Coding
+
+1. Lab notebook 
+2. SAM files
+3. Extract expression 
+4. What's going on in the background 
+
+
+
+-rw-r--r--. 1 lchambe1 users  4887950297 Feb 15 10:21 10_5-11_H_0_R1_clean_paired.fq
+
+-rw-r--r--. 1 lchambe1 users   571278338 Feb 15 10:21 10_5-11_H_0_R1_clean_unpaired.fq
+
+-rw-r--r--. 1 mpespeni users  5247438419 Feb 10 11:15 10_5-11_H_0_R1.cl.pd.fq
+
+-rw-r--r--. 1 mpespeni users   363350299 Feb 10 11:15 10_5-11_H_0_R1.cl.un.fq
+
+-rw-r--r--. 1 lchambe1 users  4881390207 Feb 15 10:21 10_5-11_H_0_R2_clean_paired.fq
+
+-rw-r--r--. 1 lchambe1 users    76576027 Feb 15 10:21 10_5-11_H_0_R2_clean_unpaired.fq
+
+
+
+s=search, find ::, replace with _, g is global - replace globally 
+
+```
+sed -i 's/::/|_/g' YOURFILE.sam
+```
+
+
+
+error
+
+```
+[bwa_seq_open] fail to open file '/data/project_data/fastq/cleanreads/10_5-11_H_0_R1.fq.gz_left_clean_paired.fq' : No such file or directory
+```
+
+
+
+```
+#!/bin/bash 
+
+# To run from present directory and save output: ./bwaaln.sh > output.bwaaln.txt 
+
+myLeft='10_5-11_H_0_R1.fq.gz_left_clean_paired.fq'
+echo $myLeft
+
+myRight=${myLeft/_R1.fq.gz_left/_R2.fq.gz_right}
+echo $myRight
+
+myShort=`echo $myLeft | cut -c1-11`
+echo $myShort
+
+# bwa index /data/project_data/assembly/longest_orfs.cds  # This only needs to be done once on the reference
+
+bwa aln /data/project_data/assembly/longest_orfs.cds /data/project_data/fastq/cleanreads/$myLeft > $myLeft".sai"
+bwa aln /data/project_data/assembly/longest_orfs.cds /data/project_data/fastq/cleanreads/$myRight > $myRight".sai"
+bwa sampe -r '@RG\tID:'"$myShort"'\tSM:'"$myShort"'\tPL:Illumina' \
+        -P /data/project_data/assembly/longest_orfs.cds $myLeft".sai" $myRight".sai" \
+        /data/project_data/fastq/cleanreads/$myLeft \
+        /data/project_data/fastq/cleanreads/$myRight > $myShort"_bwaaln.sam"
+~                                                                              
+```
+
+
+
+<div id='id-section5'/>
+
+## Page 5: 2017-02-17. 
+
+/data/project_data/assembly/longest_orfs.cds
+
+
+
+<div id='id-section6'/>
+
+## Page 6: 2017-02-27. Guest Speaker (Scott Edwards)
+
+***Glossary***
+
+**coalescent** - common ancestor- node - when you sequence many individuals and you find a pattern of where they are coalescing, you can make an inference 
+
+**reticulation** describes the origination of a [lineage](https://en.wikipedia.org/wiki/Lineage_(evolution)) through the partial merging of two ancestor lineages, leading to relationships better described by a [phylogenetic network](https://en.wikipedia.org/wiki/Phylogenetic_network) than a bifurcating [tree](https://en.wikipedia.org/wiki/Phylogenetic_tree).
+
+**purifying/background selection**
+
+**gene trees vs. species**
+
+**introgression/recombination** - requires a history of divergenc; gene flow; hybridization 
+
+**incomplete lineage sorting (ILS)** – so®†ing of taxa is no† comple†e ye†, 
+
+* large population sizes and short time will result in genes that are still around
+* time is hight of the tree, population size is the width of the brach 
+* when Ne is very big, ratio is very small.  Ne is population size 
+* t/Ne
+* Genomes are collections of evolutionary histories
+
+
+
+
+
+```
+allcountsdata.txt                             100% 3883KB   3.8MB/s   00:00    
+cols_data_trim.txt                            100% 2342     2.3KB/s   00:00    
+countsdata_trim2.txt                          100% 3394KB   3.3MB/s   00:00    
+countstatsummary.txt                          100% 8059     7.9KB/s   00:00    
+DESeq2_SSW_round2.R                           100%   13KB  13.3KB/s   00:00    
+scp: /data/project_data/DGE/round1: not a regular file
+[lchambe1@pbio381 Desktop]$ cd ~/Desktop/sea_star2
+```
+
+
+
+<div id='id-section5'/>
+
+## Page 7: 2017-03-01 
+
+**DESeq2** 
+
+LRT - Likelihood ratio test - comparing two different models to see hwich one is better - does this model explain the significance in the data and how accurate is it 
+
+* log(likelihood(full model) - likelihood(reduced model)) = Likelyhood ratio (LR)
+* Health, day, health*day - health, day 
+* distributed as chi square with df = # parameters full model - parameters reduced
+* given the data this is the most likely model 
+* less parameters = more power ; simplest model 
+
+Model 3 
+
+*give group variable that you have defined as all combinations of your variables.  For each of the individuals*
+
+PCA plot - clusters on arbitrary axis based on similarites etween two samples 
+
+*you cant have individuals and day in the same model because you days are the replicates in the model*
+
+Moving files from the server to your desktop 
+
+```
+scp lchambe1/data/project_data/DGE/*.csv . 
+```
+
+```
+scp lchambe1/data/project_data/DGE/*.txt . 
 ```
 
