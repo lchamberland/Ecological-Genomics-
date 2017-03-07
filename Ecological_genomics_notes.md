@@ -20,7 +20,7 @@ Science should be reproducible and one of the best ways to achieve this is by lo
 
 - [Page 1: 2017-02-06](#id-section1). RNAseq
 
-- [Page 2: 2017-02-08](#id-section2). Transcriptomics
+- [Page 2: 2017-02-08](#id-section2). Transcriptomics 1
 
 - [Page 3: 2017-02-13](#id-section3). Transcriptomics 2
 
@@ -28,13 +28,13 @@ Science should be reproducible and one of the best ways to achieve this is by lo
 
 - [Page 5:](#id-section5) Transcriptomics 4
 
-- [Page 6:](#id-section6) 
+- [Page 6:](#id-section6) Guest - Scott Edwards
 
-- [Page 7:](#id-section7).
+- [Page 7:](#id-section7) DEseq and WGCNA
 
-- [Page 8:](#id-section8).
+- [Page 8:](#id-section8).Population Genomics
 
-- [Page 9:](#id-section9).
+- [Page 9:](#id-section9).Assignment #2
 
   ___________
 
@@ -658,9 +658,9 @@ scp: /data/project_data/DGE/round1: not a regular file
 
 
 
-<div id='id-section5'/>
+<div id='id-section7'/>
 
-## Page 7: 2017-03-01 
+## Page 7: 2017-03-01. DEseq and WGCNA 
 
 **DESeq2** 
 
@@ -683,10 +683,502 @@ PCA plot - clusters on arbitrary axis based on similarites etween two samples
 Moving files from the server to your desktop 
 
 ```
-scp lchambe1/data/project_data/DGE/*.csv . 
+scp lchambe1@pbio381.uvm.edu:/data/project_data/DGE/*.csv . 
 ```
 
 ```
-scp lchambe1/data/project_data/DGE/*.txt . 
+scp lchambe1@pbio381.uvm.edu:/data/project_data/DGE/*.txt . 
+```
+
+Assignment
+
+* comparing within healthy and sick individuals
+* compare between intertidal individuals and subtidal individuals 
+* for the entire data set rather than a subset (take out the sample line)
+* dedicate a part of the lab notebook and say "see lab journal for code"
+
+
+
+### WGCNA
+
+Weighted correlation network analysis 
+
+* R package - apply correlation methods to describe correlation (coexpression) patters among genes in micro-array samples (or gene expression data now)
+* ​
+
+
+
+Network construction —> module identification —> relationship of modules to external info —> relationship between/ within —> finding key drivers 
+
+
+
+Node - gnee
+
+Edge strength of correlation in expression 
+
+package provides differeent co expression meeasures 
+
+signed networks - positive of correlation in expression 
+
+unsigned networks - absolute value of correlaltion in expressiion (positive and negative )
+
+<div id='id-section8'/>
+
+## Page 8: 2017-03-06. Population Genomics
+
+**Population genomics** -
+
+* SNPs, large data sets (genome/transcriptome wide)
+* sampling unit is individuals within species - right now fewer individuals than genetic studies 
+
+**Paralog** - gene duplicate
+
+**pie** - pairwise nucleotide diversity 
+
+**SFS** - site frequency spectrum = histogram of allele frequency 
+
+**Ne** - Effective population size
+
+
+
+*Process*
+
+1) population structure (diversity between populations)
+
+2) diversity within populations
+
+3) selection 
+
+* positive
+* negative, "purifying"
+
+
+
+*Pipeline*
+
+Raw reads —> clean —> assemble "draft transcriptome" —> mapped reads —>
+
+—> 1) Transcriptomics (count number of reads/transcript) —> DGE!
+
+—> 2) population genomics (call SNPs + Genotyps) —> allele freqeuencies, SFS, pie
+
+
+
+*Challenges of calling SNPs*
+
+sequencing error (Illumina 1 out of 100 of bases are called incorrectly)
+
+* we will apply **filters** - minor allele frequency - filtering out SNPs that are very rare when looking across individuals
+  * **depth** - we want to think about how many individuals we are sampling, if there are fewer indivdiduals, we are less confident that something might be fake
+
+
+
+*Challenges of calling genotypes*
+
+1)
+
+AA, AT, or TT ? 
+
+if G = AT, predict A = T = 0.5
+
+Genotype likelihood: 
+
+​	   <u>Pr</u>
+
+AA — low
+
+AT — high
+
+TT — low
+
+we would throw out or filter the low probabilities; however in bayesian statistics, you use the low freqencies 
+
+2) 
+
+Paralogies - duplicated gene 
+
+* A and B are gene copies 
+* B has a SNP that is different
+* if we map a and b every individual will come up as a heterozygote 
+* if you in your HWE see that 100% of individuals is heterozygote you will know that you have a paralog because it is violating Hardy Weignbergs Equilibrium 
+
+
+
+*Diversity*
+
+**pie** = pairwise nucleotide diversity = expected heterozygosity 
+
+sequences i + j          
+
+pie = Sum(Xi Xj Pieij) 
+
+PIEs synonomoussites = 4 Ne/u
+
+u = mutation rate 
+
+PIEn non sysnonomous sites = more effected by selection and we don't want to look at just this
+
+* non synonomous mutations are almost always deleterious a
+
+Pie non synonymous / pie synonymous = strength of selection 
+
+* if selection is neutral then it is 1
+* usually it is less than one - smaller it is, less nonsyn mutaitions there are, so there is stronger selection 
+* how strong is selection acting against deleterious mutations 
+* purifying selection = low ratio 
+
+
+
+PIEs = measure of effective population size 
+
+
+
+**Paper**
+
+* large population = more meiosis happening 
+* main challenges
+  * paralog filtering 
+    * hidden paralog 
+* Figure 1 
+  * Population genetics statistics - 
+  * ORF - open reading frames
+  * right side
+  * left side 
+  * d is looking at ration of non syn/ syn from ingroup to outgroup - looking at how much drift has happened in the lineage 
+  * quality control - 
+
+**orthologs** - same gene between species (not the result of duplication)
+
+
+
+Wright-Fisher assumptions 
+
+* panmictic
+* large population size 
+* no selection 
+* population size is static
+
+
+
+Download and install SISCO vpn to login from anywhere 
+
+
+
+*Subset your colData into location* - homework
+
+**coding**
+
+vcftools.github.io
+
+Methods to get rid of heterozygous individuals that don't exist 
+
+* "samtools" - merges sam files - taking all the reads and pulling out the most likely one 
+  * ​
+* call SNPs separately and compare reps within individuals to identify SNPs
+
+
+
+set no wrap 
+
+```
+:set nowrap
+```
+
+
+
+word count 
+
+```
+| wc
+```
+
+1.8 million SNPs that survived for downstream analysis 
+
+give option 
+
+```
+--
+```
+
+f(A) = number of observed/48 = 1/48
+
+```
+ 
+$ vcftools --vcf filename.vcf --maf 0.02
+```
+
+
+
+```
+vcftools --vcf SSW_bamlist.txt.vcf --min-alleles 2 --max-alleles 2 --maf 0.02 --max-missing 0.8 --recode --out ~/mydata/biallelicdata
+```
+
+looking at data in r 
+
+```
+R
+```
+
+get working directory 
+
+```
+getwd()
+```
+
+```
+hardy <- read.table("out.hwe", header=T)
+str(hardy)
+```
+
+output
+
+```
+'data.frame':	442 obs. of  8 variables:
+ $ CHR               : Factor w/ 111 levels "TRINITY_DN35598_c0_g1_TRINITY_DN35598_c0_g1_i1_g.5802_m.5802",..: 65 65 100 100 100 100 100 100 88 88 ...
+ $ POS               : int  4566 4665 978 1404 1722 3426 3729 3912 115 141 ...
+ $ OBS.HOM1.HET.HOM2.: Factor w/ 27 levels "10/11/3","11/0/13",..: 27 22 27 27 20 27 22 18 18 27 ...
+ $ E.HOM1.HET.HOM2.  : Factor w/ 16 levels "10.01/10.98/3.01",..: 14 12 14 14 11 14 12 10 10 14 ...
+ $ ChiSq_HWE         : num  0.0109 0.1067 0.0109 0.0109 0.1983 ...
+ $ P_HWE             : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ P_HET_DEFICIT     : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ P_HET_EXCESS      : num  1 0.936 1 1 0.874 ...
+```
+
+```
+hardy[which(hardy$P_HET_DEFICIT<0.01),2:7]
+```
+
+output
+
+```
+    POS OBS.HOM1.HET.HOM2. E.HOM1.HET.HOM2. ChiSq_HWE        P_HWE
+277 216             22/0/2  20.17/3.67/0.17        24 1.418440e-03
+291  99            11/0/13  5.04/11.92/7.04        24 9.114786e-08
+293 138             19/0/5  15.04/7.92/1.04        24 6.498371e-06
+401 244            13/0/11  7.04/11.92/5.04        24 9.114786e-08
+406 283            13/0/11  7.04/11.92/5.04        24 9.114786e-08
+    P_HET_DEFICIT
+277  1.418440e-03
+291  9.114786e-08
+293  6.498371e-06
+401  9.114786e-08
+406  9.114786e-08
+```
+
+get out of R
+
+```
+quit()
+```
+
+
+
+linkage disequalibrium (ld) 
+
+calculate ld between genotypes
+
+```
+--geno-r2
+```
+
+```
+LD <- read.table("out.geno.ld", header=T)
+```
+
+
+
+```
+
+After filtering, kept 24 out of 24 Individuals
+Outputting Pairwise LD (bi-allelic only)
+	LD: Only using diploid individuals.
+After filtering, kept 1180 out of a possible 1180 Sites
+Run Time = 3.00 seconds
+[lchambe1@pbio381 biallelicdata]$ R
+
+R version 3.3.2 (2016-10-31) -- "Sincere Pumpkin Patch"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-redhat-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> LD <- read.table("out.geno.ld", header=T)
+> str(LD)
+'data.frame':	4650 obs. of  5 variables:
+ $ CHR   : Factor w/ 192 levels "TRINITY_DN35598_c0_g1_TRINITY_DN35598_c0_g1_i1_g.5802_m.5802",..: 105 105 105 105 105 105 105 105 105 105 ...
+ $ POS1  : int  2127 2127 2127 2127 2127 2127 2127 2127 2127 2127 ...
+ $ POS2  : int  2217 2235 2244 2276 2277 2535 2805 2970 2994 3327 ...
+ $ N_INDV: int  19 19 19 19 19 20 19 20 20 20 ...
+ $ R.2   : num  0.00654 0.00309 0.00309 0.00309 0.00309 ...
+> LD$dist <- abs(LD$POS1-LD$POS2)
+> str(LD)
+'data.frame':	4650 obs. of  6 variables:
+ $ CHR   : Factor w/ 192 levels "TRINITY_DN35598_c0_g1_TRINITY_DN35598_c0_g1_i1_g.5802_m.5802",..: 105 105 105 105 105 105 105 105 105 105 ...
+ $ POS1  : int  2127 2127 2127 2127 2127 2127 2127 2127 2127 2127 ...
+ $ POS2  : int  2217 2235 2244 2276 2277 2535 2805 2970 2994 3327 ...
+ $ N_INDV: int  19 19 19 19 19 20 19 20 20 20 ...
+ $ R.2   : num  0.00654 0.00309 0.00309 0.00309 0.00309 ...
+ $ dist  : int  90 108 117 149 150 408 678 843 867 1200 ...
+> pdf("LD.plot.pdf")
+> plot(LD$dist,LD$R.2)
+> dev.off()
+null device 
+          1 
+> 
+```
+
+<div id='id-section9'/>
+
+## Page 9: 2017-03-08. Assignment #2
+
+Assignment #2:
+RNA-seq for Gene Expression Analyses                         P/BIO 381
+
+R script
+
+```
+library("DESeq2")
+
+library("ggplot2")
+
+countsTable <- read.delim('countsdata_trim2.txt', header=TRUE, stringsAsFactors=TRUE, row.names=1)
+countData <- as.matrix(countsTable)
+head(countData)
+
+conds <- read.delim("cols_data_trim.txt", header=TRUE, stringsAsFactors=TRUE, row.names=1)
+head(conds)
+colData <- as.data.frame(conds)
+head(colData)
+colDataINT<-subset(colData, colData$location=="int")
+colDataSUB<-subset(colData, colData$location=="sub")
+                   
+countsTable <- read.delim('countsdata_trim2.txt', header=TRUE, stringsAsFactors=TRUE, row.names=1)
+countData <- as.matrix(countsTable)
+head(countData)
+                   
+countDataINT<-countData[, which(colnames(countData) %in% row.names(colDataINT))]
+countDataSUB<-countData[, -which(colnames(countData) %in% row.names(colDataSUB))]
+dim(countDataINT)
+dim(countDataSUB)
+
+#Model 1 - FULL
+dds <- DESeqDataSetFromMatrix(countData = countData, colData = colData, design = ~ location + health)
+
+dim(dds)
+#[1] 26550    65
+
+dds <- dds[ rowSums(counts(dds)) > 100, ]
+dim(dds)
+#[1] 13334    65
+
+colData(dds)$health <- factor(colData(dds)$health, levels=c("H","S")) #sets that "healthy is the reference
+
+dds <- DESeq(dds) 
+
+res <- results(dds)
+res <- res[order(res$padj),]
+head(res)
+
+summary(res)
+
+#out of 13318 with nonzero total read count
+#adjusted p-value < 0.1
+#LFC > 0 (up)     : 70, 0.53% 
+#LFC < 0 (down)   : 18, 0.14% 
+#outliers [1]     : 424, 3.2% 
+#low counts [2]   : 10968, 82% 
+#(mean count < 46)
+#[1] see 'cooksCutoff' argument of ?results
+#[2] see 'independentFiltering' argument of ?results
+
+#Model 2 INTERTIDAL
+
+ddsINT <- DESeqDataSetFromMatrix(countData = countDataINT, colData = colDataINT, design = ~ health)
+
+dim(ddsINT)
+#[1] 26550    39
+
+ddsINT <- ddsINT[ rowSums(counts(ddsINT)) > 100, ]
+dim(ddsINT)
+#[1] 12082    39 
+
+colData(ddsINT)$health <- factor(colData(ddsINT)$health, levels=c("H","S")) #sets that "healthy is the reference
+
+ddsINT <- DESeq(ddsINT) 
+
+resINT <- results(ddsINT)
+resINT <- resINT[order(resINT$padj),]
+head(resINT)
+
+summary(resINT)
+#out of 12062 with nonzero total read count
+#adjusted p-value < 0.1
+#LFC > 0 (up)     : 82, 0.68% 
+#LFC < 0 (down)   : 8, 0.066% 
+#outliers [1]     : 0, 0% 
+#low counts [2]   : 11010, 91% 
+#(mean count < 77)
+#[1] see 'cooksCutoff' argument of ?results
+#[2] see 'independentFiltering' argument of ?results
+
+#Model 3 SUBTIDAL
+
+ddsSUB <- DESeqDataSetFromMatrix(countData = countDataSUB, colData = colDataSUB, design = ~ health)
+
+dim(ddsSUB)
+#[1] 26550    26
+
+ddsSUB <- ddsSUB[ rowSums(counts(ddsSUB)) > 100, ]
+dim(ddsSUB)
+#[1] 11507    26 # at > 100; we loose many fewer genes
+
+colData(ddsSUB)$health <- factor(colData(ddsSUB)$health, levels=c("H","S")) #sets that "healthy is the reference
+
+ddsSUB <- DESeq(ddsSUB) 
+
+resSUB <- results(ddsSUB)
+resSUB <- resSUB[order(resSUB$padj),]
+head(resSUB)
+
+summary(resSUB)
+#out of 11499 with nonzero total read count
+#adjusted p-value < 0.1
+#LFC > 0 (up)     : 11, 0.096% 
+#LFC < 0 (down)   : 196, 1.7% 
+#outliers [1]     : 772, 6.7% 
+#low counts [2]   : 1793, 16% 
+#(mean count < 6)
+#[1] see 'cooksCutoff' argument of ?results
+#[2] see 'independentFiltering' argument of ?results
+
+#Plot counts 
+
+d <- plotCounts(dds, returnData=TRUE)
+d
+
+norm.counts <- counts(dds, normalized=TRUE)
+dim(norm.counts)
+
+############## PCA plots
+vsd <- varianceStabilizingTransformation(dds, blind=FALSE)
+plotPCA(vsd, intgroup=c("health","location"))
+
+vsdINT <- varianceStabilizingTransformation(ddsINT, blind=FALSE)
+plotPCA(vsdINT, intgroup=c("health"))
+
+vsdSUB <- varianceStabilizingTransformation(ddsSUB, blind=FALSE)
+plotPCA(vsdSUB, intgroup=c("health"))
 ```
 
