@@ -1,3 +1,7 @@
+
+
+
+
 # Online Notebook
 
 ### Author: Lisa Chamberland
@@ -35,6 +39,14 @@ Science should be reproducible and one of the best ways to achieve this is by lo
 - [Page 8:](#id-section8).Population Genomics
 
 - [Page 9:](#id-section9).Assignment #2
+
+- [Page 10:](#id-section10) Population Genomics
+
+- [Page 10:](#id-section10) Population Genomics
+
+- [Page 10:](#id-section10) Population Genomics
+
+- [Page 10:](#id-section10) Population Genomics
 
   ___________
 
@@ -252,7 +264,7 @@ file is executable if it is lit up green
 to run/execute file 
 
 ```
-./filename or bash.filename
+./filename or bash filename
 ```
 
 Output for my data files 
@@ -343,7 +355,9 @@ to clean and create output html file
 fastqc filename.fq.gz
 ```
 
-Move .html file to your computer desktop using the **scp** command (*open another terminal*)
+Move .html file to your computer desktop using the 
+
+**scp** command (*open another terminal*)
 
 ```
 scp lchambe1@pbio381.uvm.edu:/data/project_data/fastq/filename.html ~/Desktop/
@@ -1181,4 +1195,773 @@ plotPCA(vsdINT, intgroup=c("health"))
 vsdSUB <- varianceStabilizingTransformation(ddsSUB, blind=FALSE)
 plotPCA(vsdSUB, intgroup=c("health"))
 ```
+
+<div id='id-section10'/>
+
+## Page 10: 2017-03-20. 
+
+Model Dataset
+
+STRUCTURE
+
+AdMIXTURE
+
+Non-Parametric approaches - multivariant analyses 
+
+1) Clustering
+
+* pairwise data matrix
+* clustring program 
+* these produce phenograms (type of tree based on overall least amount of difference)
+
+2) Ordination methods - reduce data to smaller amount of dimensions that capture portion of the variations
+
+* PCA
+* Multiscale dimensions
+
+AdMixed Pop
+
+* HNM
+* LAMP
+* RFMix
+
+
+
+* As Known K, allele frequencies
+* Simulation 
+* mainly used in human genomics - mapping genes to diseases, pharmicogenomics, localize sequence and map them to sequence, larger sample sizes, new methods, refinement of methods
+* local ancestry works well with 2 populations but when you expand it to multiple populations, you have very little reliability in data 
+
+
+
+**Gompert et al. 2014**
+
+*Admixture and the organization of genetic diversity in a butterfly species complex revealed through common and rare genetic variants*
+
+* rare alleles are ogood at looking at finer scale
+* common alleles look at broad scale
+
+
+
+**Coding**
+
+* Final VCF data
+  * filter
+  * output to home directory
+
+
+* estimate allele frequencies betweeen healthy and sick individuals 
+  * looking for SNPs that show deviation between these groups 
+  * f(H) - f(S)
+* Fst between H vs S
+* output the above diversity metrics to local machines and plot them in R
+* estimate pie at synonomous and non synonomous sites and look at the ratio to get info on purifying selection 
+  * output to local machine and compare to metazoine to Romigier paper data and how sea stars fall into life history continuum 
+
+
+
+Open a small text file
+
+```
+cat filename
+```
+
+pull out specific individuals
+
+```
+grep
+```
+
+grab column
+
+```
+cut
+```
+
+word count to count the number of rows and characters in a file 
+
+```
+wc filename 
+```
+
+<div id='id-section11'/>
+
+## Page 11: 2017-03-20. Population Genomics
+
+**Species divrgence with gene flow**
+
+*allopatric speciation* - species divergence in the absence of gene flow (physical barrier); isolated
+
+* was believed this was primary way species form 
+* genetic drift will effect different isolated populations differently
+  * some alleles might dissappear in some popuolations, others might go to fixation in other populations
+
+*sympatric speciation* - diversifying selection; presence of gene flow 
+
+* selected genes appear diverging
+* neutral alleles appear homogenous 
+* genetic drift will just appear as noise
+
+
+
+**Genomic Scans**
+
+* islands of differentiation 
+
+  * looks at distribution of summary statistics tht measure differentiation 
+  * area with high Fst value, area is being differenetiated etween population or specise; region under selection 
+
+* comparing gene vs. population trees 
+
+  * compare assumed population trees 
+  * compare assumed popualtion trees to gene trees, compare different genes
+  * D statistic - determines whether or not there is intergression happening 
+    * abababa test - two different trees 
+      * no inttrogression D=0 (ABBA=BABA)
+      * introgression D does not =0
+      * limittations
+        * throws out our data 
+        * requires many generations
+        * gibe balue multiple explainations 
+
+  **Allel frequency spectrum (AFS)** - histograms of allele frequencies
+
+  * uses count data —> distribution with characteristic shape 
+  * Assumptions
+    * allele SNPs = independent
+    * free recombination SNPs
+    * mutation 
+  * Limitations
+    * sapmpling cahlaneges
+    * a lot of data 
+    * expensive for models with more than 3 populations
+
+**Geneology sampling **
+
+* multiple regions —> 1 gene tree 
+* Assumptions
+  * tre recombination genes 
+  * complete lincage with loci
+  * mutation errors vary accessgenome 
+  * no recombination common ancestors 
+
+**Likelihood-free**
+
+* approx Bayesian comb (ABC)
+  * mutations under model of interest 
+  * easy 
+
+
+
+**Historical gene flow and likelihood distribution patterns**
+
+**Distrbution of haplotype lengths**
+
+* recombination —> shorter fragments/time
+* difficult to migrant haplotypes 
+* other demographies
+
+**Approx of conditional likelihoods**
+
+* ancestral recombination graphs 
+* measureing recombination rather than gene divergence
+* limititations
+  * complex
+  * you will end up with multiple graphs of potential recombination events and you could end up selecting the wrong graph 
+
+**Whole geneome sequencing**
+
+advantages
+
+* fairly accurate estimation 
+* good estimation of recombination rates
+* large "areas" for genome scans
+
+limitations
+
+* throw out data 
+* computationally challenging 
+
+**Coding**
+
+* STate estimation of sysnonomous and non synonomous sites
+* Compare our diversity data to Ronigiuer data 
+  * estimate Ne
+* Begin investiganting popouatlion structure
+  * PCA 
+  * AdMixture 
+
+run program in background
+
+```
+screen
+```
+
+to detatch from screen
+
+```
+ctrl a and d at same time
+```
+
+log back into screen 
+
+```
+screen -r
+```
+
+
+
+
+
+ratio [confidence interval]
+
+Average piS in focal species: 0.00585312 [0.005172; 0.006598] (*synonomys ratio diversity*)
+
+Average piN in focal species: 0.00154546 [0.00133; 0.001782] (*non-synonomous ratio diversity*)
+
+higher ratio means that selection is not as good at eliminating deleterious mutations
+
+* tends to be really high for long lived vertebrates with low population sites and low for bacteria and other high population size 
+
+
+<div id='id-section12'/>
+
+## Page 12: 2017-03-27. Population Genomics
+
+**Selective sweeps** - rise in frequency of allele in question and  hitchhiking or genes athat are close in gene in question; reduction of genetic diversity 
+
+soft sweeps v hard sweeps matter in genetic diversity at the end
+
+**hard sweep** - single adaptive alllele in common genetic background 
+
+**soft sweep** - more than one adaptive allele in differeent genetic bacgroudn
+
+​	*E.g. HIV; you would expect a shallower decline*
+
+Alison Feder on youtube
+
+***selective sweeps can be hard on a local scale and soft on a global scale***
+
+​	*E.g. lactose tolerance evolved independently in both African and Euraisian population*
+
+Theta = effetive population size times the mutation rate 
+
+Theta = 2NEu
+
+* population size 
+* fitness effects 
+
+Alternative hypotheses
+
+* drift 
+* cause & effect
+
+
+
+Strategy to distiguish selection vs bottleneck 
+
+* cose 96 random clones and sequenced them 
+  * use to estimate demographic history of population 
+  * and see if Mc1r is selection
+* *the more severe the bottleneck is, the harder it is to tell*
+
+capture probes = primers 
+
+
+
+* demographic model
+* signatures of selection
+* estimate the age of the selective allele
+
+
+
+Tajima's D
+
+* tells you about the shape of the geneology 
+* a gene that evolbes neutrally D = approx )
+* D negative = tree where all of the alleles are very recent and relatively rare in the population 
+  * you would expect this under a hard sweep 
+* D positive = rare mutations are missing relative to what you would expect in a neurtral 
+  * you might expect this in a bottleneck effect 
+
+
+
+CLR
+
+* test support for hard sweep 
+
+
+
+**Coding**
+
+genlight = lightweight data structure that only loads some ata time
+
+
+
+<div id='id-section13'/>
+
+## Page 13: 2017-03-29. Population Genomics
+
+**Local Adaptation**
+
+*Problem* finding genetic signatures within local populations 
+
+*<u>Different Approaches</u>*
+
+* genetic - environment association analysis
+* differntiation outlier method 
+  * fst
+
+*<u>Challenges</u>*
+
+* confounding factiors
+  * demographic history 
+  * neutral population structure
+    * if there isn't gene flow happening it can be selection due to drift
+  * background selection 
+    * purifying selection of deleterious allels 
+* Missing genome
+  * reduced representation 
+  * missing structure variants in reference 
+  * loss of repetative regions/ paralogs 
+* Missing landscape
+  * low resolution average data 
+  * scale of local adaptations 
+  * multi co linearity - what is correlated that might be acting on, differentiate between thoses
+
+*<u>Solutions</u>*
+
+* confounding factors 
+  * null demographic models 
+  * relatedness among samples 
+* Missing genome
+  * exome capture, RNA seq 
+  * WGS
+  * Reference genome
+  * Depth coverage 
+* Missing landscape
+  * know system
+    * time scale
+    * what variation you think are important
+    * ecology of the system
+
+*<u>Other considerations</u>*
+
+* sampling strategy 
+  * number of individuals
+  * paired sampling
+* multiple comparisons
+  * FDR - false discovery rate 
+  * Sliding window
+* Genetic architecture 
+
+*<u>Final Notes</u>*
+
+*If you wanted to understand how sea stars were adapting to local adaptation eniironments*
+
+* set up at the extremes for pH 
+* set up a gradient 
+
+
+
+***Kubota et al. 2015***
+
+* find canditate genes 
+* need strategies to validate 
+
+**Coding**
+
+
+
+Pr(G|K,Q,)
+
+G=dataset of i individuals at j SNPs
+
+K=population
+
+Q=ancestry(proportion of an individuals genome)
+
+P = allele frequency at each population 
+
+*maximizses P and Q using likelihood methods*
+
+ADMIXTURE
+
+* likelihood, not a bayesian model
+* fast
+* downside = we can't use bayesian probabilities to differentiat models 
+* Instead uses *cross validation* - masks random individuals and then sees how good the model is (similar to jacknife)
+
+unzip file within terminal 
+
+```
+gunzip filename
+```
+
+bash file
+
+* reproducible science 
+* lets you do multiple commands without having to wait for commands to finish 
+
+every bash script has the following line.  it tells the computer how to read it 
+
+```
+!/bin/bash
+```
+
+java -Xmx512M -jar /data/popgen/PGDSpider_2.0.9.0/PGDSpider2-cli.jar -inputfile ./yourinputfile.vcf -inputformat VCF -outputfile ./youroutputfile.vcf.geno -outputformat EIGENSOFT -spid ./vcf2admixture_SSW.spid
+
+calls java/ memory/ datafile / ./meanslook in the curerent directory 
+
+.geno file is the output jacknife file 
+
+```
+vim SSW_all_biallelic.MAF0.02.Miss0.8.recode.vcf.geno 
+```
+
+$variable name - changes in each iteration 
+
+<div id='id-section14'/>
+
+## Page 14: 2017-03-29. Homework #3
+
+Homework 3
+
+* add different filtering techniques
+* minor allele frequency
+* Gompert paper 
+* flag MAF 
+* 2 different output files 
+
+Example code stringing together multiple filters; below, compare two recode files 
+
+```
+$ vcftools --vcf filename.vcf --min-alleles 2 --max-alleles 2 --maf 0.02 --max-missing 0.8 --recode --out ~/biallelic.MAF0.02.Miss0.8
+```
+
+```
+vcftools --vcf biallelic.MAF0.05.Miss0.8.recode.vcf --diff SSW_all_biallelic.MAF0.02.Miss0.8.recode.vcf --out compare
+```
+
+```mermaid
+graph TD
+
+A[Unfiltered VCF file] --> B[biallelic]
+B --> C[--max-missing]
+C --> D[remove individuals with >10% missing data]
+D-->E[prune 5 individuals]
+C--> F[minor allele freqencies]
+F-->G[set maf > 0.05]
+G --> H[PCA]
+G--> I[DAPC]
+G --> J[ADMIX]
+E--> H
+E--> I
+E--> J
+```
+
+Names of four individuals with a lot of missing data, from glplot, were compiled into a .txt file (vcfprune.txt). File is below
+
+```
+07
+22
+24
+26
+```
+
+log onto server and set working directory
+
+```
+$ ssh lchambe1@pbio381.uvm.edu
+$ cd ~/
+```
+
+command to remove certain individuals that had a lot of missing data 
+
+```
+$  vcftools --gzvcf /data/project_data/snps/reads2snps/SSW_by24inds.txt.vcf.gz --remove vcfprune.txt --min-alleles 2 --max-alleles 2 --max-missing 0.8 --recode --out ~/SSW_prune_biallelic_MAF0.02_Miss0.8
+```
+
+minor allele frequency
+
+```
+$  vcftools --gzvcf /data/project_data/snps/reads2snps/SSW_by24inds.txt.vcf.gz --min-alleles 2 --max-alleles 2 --maf 0.05 --max-missing --recode --out ~/SSW_biallelic_MAF0.05_Miss0.8
+```
+
+Use ccipber 
+
+terminate a running command
+
+```
+ctrl c
+```
+
+troubleshooting - error in reading the vcfpruned.txt file; names in text file must match names in vcf file
+
+```
+[lchambe1@pbio381 ~]$ vcftools --gzvcf /data/project_data/snps/reads2snps/SSW_by24inds.txt.vcf.gz --remove-indv vcfpruned.txt --recode --out ~/SSW_all_biallelic.MAF0.02Miss0.8.pruned.recode.vcf
+
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--gzvcf /data/project_data/snps/reads2snps/SSW_by24inds.txt.vcf.gz
+	--out /users/l/c/lchambe1/SSW_all_biallelic.MAF0.02Miss0.8.pruned.recode.vcf
+	--recode
+	--remove-indv vcfpruned.txt
+
+Using zlib version: 1.2.7
+Excluding individuals in 'exclude' list
+After filtering, kept 24 out of 24 Individuals
+Outputting VCF file...
+After filtering, kept 7486938 out of a possible 7486938 Sites
+Run Time = 157.00 seconds
+[lchambe1@pbio381 ~]$ 
+```
+
+Find and replace in textwrangler
+
+==(\d+)(\_\d\-\d+\_[A-Z]\_\d+)==
+
+\1
+
+R script (I did a PCA in addidtion to the DAPC but I chose to use the DAPC for the analysis)
+
+```
+# ...and load the libraries
+library(vcfR)
+library(adegenet)
+
+#Read the vcf SNP data into R
+vcf1 <- read.vcfR("SSW_all_biallelic.MAF0.05.Miss0.8.recode.vcf")
+
+# The adegenet package uses a highly efficient way of storing large SNP datasets in R called a "genlight" object. The following function creates a genlight object from your vcf:
+gl1 <- vcfR2genlight(vcf1)
+print(gl1) # Looks good! Right # of SNPs and individuals!
+
+# For info, try:
+gl1$ind.names
+gl1$loc.names[1:10]
+gl1$chromosome[1:3]
+
+# Notice there's nothing in the field that says "pop"? Let's fix that...
+ssw_meta <- read.table("ssw_healthloc.txt", header=T) # read in the metadata
+ssw_meta <- ssw_meta[order(ssw_meta$Individual),] # sort by Individual ID, just like the VCF file
+
+# Confirm the ID's are ordered the same in gl1 and ssw_meta:
+gl1$ind.names
+ssw_meta$Individual
+
+gl1$pop <- ssw_meta$Location # assign locality info
+
+# THIS IS THE LINE OF CODE THAT WAS CAUSING US ISSUES IN CLASS! HERE, I'VE CORRECTED IT TO ASSIGN ALL FIELDS IN THE META-DATA FOR 'ssw_meta' AS A LIST OF VARIABLES IN 'gl1$other'. FROM HERE ON, THE CODE SHOULD WORK FINE. 
+gl1$other <- as.list(ssw_meta) # assign disease status
+
+# WE can explore the structure of our SNP data using the glPlot function, which gives us a sample x SNP view of the VCF file
+glPlot(gl1, posi="bottomleft")
+
+# Now, let's compute the PCA on the SNP genotypes and plot it:
+pca1 <- glPca(gl1, nf=4, parallel=F) # nf = number of PC axes to retain (here, 4)
+
+pca1 # prints summary
+
+# Plot the individuals in SNP-PCA space, with locality labels:
+plot(pca1$scores[,1], pca1$scores[,2], 
+     cex=2, pch=20, col=gl1$pop, 
+     xlab="Principal Component 1", 
+     ylab="Principal Component 2", 
+     main="PCA on SSW data (Freq missing=20%; 5317 SNPs)")
+legend("topleft", 
+       legend=unique(gl1$pop), 
+       pch=20, 
+       col=c("black", "red"))
+
+# Perhaps we want to show disease status instead of locality:
+plot(pca1$scores[,1], pca1$scores[,2], 
+     cex=2, pch=20, col=as.factor(gl1$other$Trajectory), 
+     xlab="Principal Component 1", 
+     ylab="Principal Component 2", 
+     main="PCA on SSW data (Freq missing=20%; 5317 SNPs)")
+legend("topleft", 
+       legend=unique(gl1$other$Trajectory), 
+       pch=20, 
+       col=as.factor(unique(gl1$other$Trajectory)))
+
+# Which SNPs load most strongly on the 1st PC axis?
+loadingplot(abs(pca1$loadings[,1]),
+            threshold=quantile(abs(pca1$loadings), 0.999))
+
+# Get their locus names
+gl1$loc.names[which(abs(pca1$loadings)>quantile(abs(pca1$loadings), 0.999))]
+
+# Run the DAPC using disease status to group samples
+disease.dapc <- dapc(gl1, pop=gl1$other$Trajectory, n.pca=8, n.da=3,
+                     var.loadings=T, pca.info=T, parallel=F)
+
+# Scatterplot of results
+scatter.dapc(disease.dapc, grp=gl1$other$Trajectory, legend=T)
+
+# Plot the posterior assignment probabilities to each group
+compoplot(disease.dapc)
+
+# Which loci contribute the most to distinguishing Healthy vs. Sick individuals?
+loadingplot(abs(disease.dapc$var.load), 
+            lab.jitter=1, 
+            threshold=quantile(abs(disease.dapc$var.load), probs=0.999))
+
+```
+
+
+
+
+
+<div id='id-section15'/>
+
+## Page 15: 2017-04-03. Population Genomics
+
+**Concepts**
+
+​	1) inbreeding produces structured populations 
+
+​	2) selective sweeps change allele frequencies in populations 
+
+​	3) empiracle p-values created from distributions of putatively neutral loci are super useful for finding natural selection 
+
+​	4) methods - Out Flank (2015)
+
+
+
+**Questions**
+
+​	1) What challenges do outleir detection methods face?
+
+​	2) How is LD (linkage disequalibrium) our friend and foe? 
+
+
+
+**F-statitstics**
+
+Heterozygosity  
+
+F - probability that any two individuals in a population are related by desent (2 alleles sampled from poupulation are identical by decent)
+
+I (dentical)
+
+S (ubpopulation)
+
+T (otal opoulation)
+
+**Fst** = (Ht - Hs) / Ht
+
+**Fis** = (inbreeding coeficient) = Expected(Hs) - Obs(Hs) / Exp(Hs)
+
+**Fit** = Ht - Hi/ Ht 
+
+
+
+* within population - genetic diversity is highest at .5 inbreeding coefficient and lower towards 0 (no breeding) and 1 (all inbreeding)
+* Regional - genetic diversity increases and peaks at pure inbreeding (1)
+  * range edge populations harbor a lot of diversity 
+* Total genetic variation (Fst) - genetic diversity is lower closer to 0 and then increases as inbreeding approaches 1, but levels off more than regional 
+
+
+
+How selection influences inbreeding?
+
+* selection acts as a bottleneck and should increase inbreeding 
+* selection can increase inbreeeding 
+
+
+
+to no wrap in vim, first press "shift :" to get into command mode 
+
+```
+:set nowrap 
+```
+
+search in vim
+
+```
+/whatyouaresearchingfor
+```
+
+
+
+<div id='id-section16'/>
+
+## Page 16: 2017-04-03. Population Genomics
+
+```mermaid
+graph TD
+
+A[processing raw data] --> B[transcriptome assembly]
+B--> C[annotation]
+B--> D[map reads]
+D--> E[DGE]
+D--> F[Population Genomics]
+E--> G[LFC p value statistic]
+F--> H[fst loadings]
+
+```
+
+```
+
+```
+
+| Functions              |  File type   |             Programs |
+| :--------------------- | :----------: | -------------------: |
+| Processing raw data    |    .fastq    |          Trimmomatic |
+| transcriptome assembly |    .fastq    |              Trinity |
+| mapping                |     .sam     |                  BWA |
+| DGE                    | counts table |               DEseq2 |
+| PopGenomics            |     .vcf     | PCA, DACP, Admixture |
+
+
+
+**Functional Enrichment analyses** - biological function? - match predictions
+
+**Annotation**
+
+* Blast2Go
+
+  * paid
+
+* Brute force
+
+* Pipelines 
+
+  * Trinotate
+
+* Blast
+
+  ​	.fasta —> databases
+
+  ​	*gene* —>  *NCBI*
+
+* Diamond 
+
+  * UniProt - protein database (protein database improve chance of getting hit - less wobble, dont see codon bias)
+
+
+
+**Blast output**
+
+* e - value
+* bit score
+* % identity 
+* length
+
+
+
+|         | Query     | Subject |
+| ------- | --------- | ------- |
+|         | .fasta    | .db     |
+| blast p | .pep (AA) | .pep    |
+| blast x | .eds      | .pep    |
+
+
+
+**Coding**
+
+
 
