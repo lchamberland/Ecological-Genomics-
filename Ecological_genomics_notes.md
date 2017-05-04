@@ -1901,7 +1901,6 @@ D--> E[DGE]
 D--> F[Population Genomics]
 E--> G[LFC p value statistic]
 F--> H[fst loadings]
-
 ```
 
 ```
@@ -1961,7 +1960,658 @@ F--> H[fst loadings]
 
 
 
+
+
+<div id='id-section17'/>
+
+## Page 17: 2017-04-10. Population Genomics
+
+```mermaid
+graph TD
+
+A[RNA-seastars] --> B[RNAseq]
+B --> C[What genes are expressed]
+C --> D[transcriptomics]
+B --> E[What is the diversity and structure?, is there evidence for selection?]
+E --> F[PopGenomics]
+A --> G[Amplicon-Seq - 16s]
+G --> H[What micromes are present, What are they doing?]
+H--> I[metagenomics]
+```
+
+<u>Microbiome</u>
+
+*Who is there?*
+
+assemblage of microbial taxa associated with a host or environment 
+
+* pathogens 
+* symbiants 
+  * mutualists 
+  * commensals
+* holobiont
+  * host and microbiome associated with host
+
+How to measure a micro biome?
+
+​	1) 16S rRNA
+
+​	2) ITS (internal transcribed spacer)
+
+​		**18S** — **5.8S** — **28S**
+
+​		In between are ITS1 and ITS2 which are non protein coding and are not conserved so they show variation at a species level beause they evolve rapidaly 
+
+
+
+<u>Metagenomics</u>
+
+*What are they doing?*
+
+genes being expressed by the microbiome 
+
+**Function**
+
+RNAseq or shot-gun DNASeq
+
+**Processing**
+
+1) Sample tissue, extract DNA/**RNA**
+
+2) PCR target gene (16S)
+
+3) Barcode amplified fragments 
+
+4) Cluster sequences based on similarity (97%) OTUs
+
+5) Blast OTUs to a database to determine taxonomy 
+
+
+
+<u>Big Questions</u>
+
+* Is there a "core" micro biome shared in common among many organisms?
+* How much diversity is unique to individuals, populations, communities?
+* Evolution of micro biome —> *adaptation* of host to environmental change?
+* Can knowledge of microbiome predict a response to env selection?
+
+
+
+38 seastars, 6 time points
+
+phenotype - if sample was sick or healthy at the time , 
+
+```
+#SampleID       BarcodeSequence LinkerPrimerSequence    Day     individual      Phenotype       Pheno_num       Final_phenotype Trajectory      Tide    Description 01-5-05                 0       1       Sick    1       Sick    SS      intertidal      1-5/5
+01-5-08                 3       1       Sick    3       Sick    SS      intertidal      1-5/8
+01-5-11                 6       1       Dead    5       Sick    SS      intertidal      1-5/11
+02-5-05                 0       2       Sick    1       Sick    SS      intertidal      2-5/5 
+02-5-08                 3       2       Sick    2       Sick    SS      intertidal      2-5/8
+02-5-11                 6       2       Sick    2       Sick    SS      intertidal      2-5/11
+02-5-14                 9       2       Sick    2       Sick    SS      intertidal      2-5/14
+02-5-17                 12      2       Sick    2       Sick    SS      intertidal      2-5/17
+02-5-20                 15      2       Dead    5       Sick    SS      intertidal      2-5/20
+03-5-05                 0       3       Healthy 0       Sick    HS      intertidal      3-5/5 
+03-5-08                 3       3       Sick    2       Sick    HS      intertidal      3-5/8
+03-5-11                 6       3       Sick    4       Sick    HS      intertidal      3-5/11
+04-5-05                 0       4       Sick    1       Sick    SS      intertidal      4-5/5 
+04-5-08                 3       4       Sick    2       Sick    SS      intertidal      4-5/8
+04-5-11                 6       4       Sick    2       Sick    SS      intertidal      4-5/11
+04-5-14                 9       4       Sick    2       Sick    SS      intertidal      4-5/14
+04-5-17                 12      4       Sick    2       Sick    SS      intertidal      4-5/17
+04-5-20                 15      4       Dead    5       Sick    SS      intertidal      4-5/20
+05-5-05                 0       5       Sick    1       Sick    SS      intertidal      5-5/5 
+05-5-08                 3       5       Sick    2       Sick    SS      intertidal      5-5/8
+05-5-11                 6       5       Sick    4       Sick    SS      intertidal      5-5/11
+06-5-05                 0       6       Sick    1       Sick    SS      intertidal      6-5/5 
+06-5-08                 3       6       Sick    2       Sick    SS      intertidal      6-5/8
+06-5-11                 6       6       Sick    2       Sick    SS      intertidal      6-5/11
+06-5-14                 9       6       Sick    4       Sick    SS      intertidal      6-5/14
+07-5-05                 0       7       Healthy 0       Sick    HS      intertidal      7-5/5 
+```
+
+```
+[lchambe1@pbio381 16s_analysis]$ biom summarize-table -i /data/project_data/16s/otu_table/otu_table_mc2_w_tax_no_pynast_failures.biom
+Num samples: 176
+Num observations: 93033
+Total count: 8362869
+Table density (fraction of non-zero values): 0.028
+
+Counts/sample summary:
+ Min: 28412.0
+ Max: 77866.0
+ Median: 47051.500
+ Mean: 47516.301
+ Std. dev.: 7637.541
+ Sample Metadata Categories: None provided
+ Observation Metadata Categories: taxonomy
+
+Counts/sample detail:
+24-5-11: 28412.0
+07-5-11: 31532.0
+
+```
+
+check number of samples
+
+check to see if numbers of count/sample detail numbers are really low - something may have gone wrong
+
+phyloseq up and running in r \
+
+
+
+1s and 9s 
+
+more common 
+
+lemmon lime 
+
+shorten list 
+
+more distinct colors - red green blue
+
+make sure to observe color 
+
+liquid 
+
+
+
+<div id='id-section18'/>
+
+## Page 18: 2017-04-12. 
+
+**Host genetic associations with the micro biome**
+
+<u>Microbiome</u>
+
+* digestive 
+* immune
+* vitamins
+* xenobiotics - lower
+* pathogens - lower
+
+*microbiota are benneficial and heritable*
+
+<u>heritability</u> - the proportion of **variance** in a *host trait* which is measured across a host population and explained by genetic mechanisms rather than environmental 
+
+* this is different than *inheritance* which is from one individual passed on to the offspring 
+
+
+
+```mermaid
+graph TD
+
+A[Heretibility]--> B[direct]
+A --> C[Genome Association Studies-GAS]
+B --> E[eg, twin pairs]
+C --> F[Humans]
+
+```
+
+<u>GWAS - humans</u>
+
+* MB = "traits"
+* SNP data (host)
+* 16s rRNA (Microbiome)
+* Eg) Hutterite population - independent farming communities descended from small European founder population 
+  * 15 heritable taxa 
+  * seasonal effects - suggests diet dependence
+    * olfactory receptor genes associated with microbes in gut 
+
+Cross study comparisons
+
+* mice - QTL 
+  * immune functions
+* plants - QTL
+  * spp richness and abundance of indiviual taxa 
+* flies - GWAS
+  * barrier defense (digestive)
+  * immunity 
+
+<u>Limitations</u>
+
+* MB $$$
+* small N —> less significant results
+* missing taxa 
+* meta analyses —> less significant results 
+
+<u>Increase power</u>
+
+* increase sample size
+* unified sampling and analysis 
+
+*Extended phenotype (Dawkins) - beaver dam*
+
 **Coding**
+
+Get rid of chimera sequences because it can think that two combined taxa is a new one 
+
+
+
+
+
+<div id='id-section19'/>
+
+## Page 19: 2017-04-17.
+
+*joe felsetstein*
+
+*stephen j gould - spandrals*
+
+alpha diversity- species richness
+
+beta diversity - diversity shared among groups of samples; between sample component of diversity 
+
+
+
+<div id='id-section20'/>
+
+## Page 20: 2017-04-19.
+
+**Rarefying Microbiome data is NOT acceptable**
+
+<u>Rarefying</u> - normalization of data using lowest N (random sampleing)
+
+<u>Rarefaction</u> - estimating species richness not using normaliztion 
+
+
+
+<u>Past methods</u>
+
+*proportions* - proportion of OTU/expectedOTU
+
+* high rate of false positives 
+* doesn't account for heterschidacity 
+* Reduced statistical power 
+
+
+
+<u>Rarefying</u>
+
+*Steps*
+
+1) smallest N N(Lmin)
+
+2) Discard libraries with fewer than N(Lmin)
+
+​	N(Lmin) - sampling effort - minimum reads 
+
+3) Sub-sample reads  larger Ns without replacement 
+
+*What it does*
+
+* Normaling the data 
+* removing large descrepencies in number of reads 
+
+*problems*
+
+* high rate of false posiitves 
+
+* requires emmission actual data 
+
+* reduces statistical power 
+
+  ​
+
+<u>Mixture model</u>
+
+two distributions mixing together 
+
+*solution to rarefying*
+
+what does this do
+
+* not decreasing power 
+* increase in accuracy 
+* combines two distributions 
+  * binomial with a zero inclated gaustian 
+
+Packages
+
+* edgeR
+* DESeq
+* phyloseq
+
+
+
+permanova - testing hypotheses that difference between your groups is higher than differences within your group 
+
+**coding**
+
+Picrust
+
+convert .biom file to json
+
+```
+biom convert -i table.txt -o table.from_txt_json.biom --table-type="OTU table" --to-json
+```
+
+
+
+<div id='id-section21'/>
+
+## Page 21: 2017-04-24.
+
+
+
+**Methods**
+
+*Time course gene set analysis* 
+
+The TcGSA method includes three steps: 1) modeling gene expression in a gene set with mixed models, 2) testing the significance of a gene set, and 3) estimating individual gene profiles (Hejblum et al. 2015).
+
+**Packages** 
+
+* time-course gene set analysis (TcGSA) cran package (Hejblum et al., 2015
+* DESeq
+
+**Objective 1** The first objective *time course analysis on healthy and sick individuals* 
+
+* **purpose** - determine whether the gene expression we find is normal, basal gene expression or gene expression due to the illness 
+
+
+* must have survived day 3-15
+* HS (08,15, 20, 38)
+* HH (10, 24, 27, 31, 33, 34)
+
+
+
+**Objective 2**
+
+**What** - capture a rapid response in gene expression after the initial onset of symptoms
+
+**How** - comparing transition period from healthy to sick 
+
+* HHH; n=6; individuals
+  10, 24, 27, 31, 33, 34
+* HSS; n=3; individuals
+  08, 15, 28
+
+
+
+**Object 3**
+
+**What** compare gene expression in sick and healthy individuals for three consecutive time periods
+
+* SSS; n=6; individuals
+  08, 09, 22, 28, 29, 36
+* HHH; n=6; individuals
+  10, 24, 27, 31, 33, 34
+
+
+
+**Figures** *paper*
+
+* 3 PCAs for objectives
+* Table with group assignments and resultss 
+* Venn diagram 
+
+
+
+**Figures** *presentation*
+
+* Volcano plot 
+
+
+
+|      | individual | day  | health | score | location |
+| ---- | ---------- | ---- | ------ | ----- | -------- |
+|      | I08        | day  | S      | 1     | int      |
+
+
+
+**References**
+
+Hejblum, B.P., Skinner, J. and Thiébaut, R., 2015. Time-course gene setanalysis for longitudinal gene expression data. PLoS Comput Biol, 11(6), p.e1004310.    
+
+
+
+## Final project R script (time series analysis, HH vs HS 15 day plot)
+
+
+
+```
+library("DESeq2")
+library("ggplot2")
+
+library("multtest")
+library("TcGSA")
+library("qqman")
+library("GSA")
+library("fission")
+
+##############################################################
+###Input data files
+##############################################################
+
+countsTable <- read.delim('countsdata_trim2.txt', header=TRUE, stringsAsFactors=TRUE, row.names=1)
+countData <- as.matrix(countsTable)
+head(countData)
+
+conds <- read.delim("cols_data_trim_new.txt", header=TRUE, stringsAsFactors=TRUE, row.names=1)
+head(conds)
+colData <- as.data.frame(conds)
+head(colData)
+
+dim(colData)
+dim(countData)
+
+##############################################################
+###Subset data by individuals that stay healthy for 15 days and individauls that become sick
+##############################################################
+
+#subset colDATA by consecutive healthy
+col_HH_1 = colData[39:42,] #indiv 27
+col_HH_2 = colData[49:53,] #indiv 31
+col_HH_3 = colData[58:62,] #indiv 33
+
+#combine rows
+col_HH_total <- rbind.data.frame(col_HH_1, col_HH_2, col_HH_3)
+
+#subset countDATA by consecutive healthy
+count_HH_1 = countData[,39:42] #indiv 27
+count_HH_2 = countData[,49:53] #indiv 31
+count_HH_3 = countData[,58:62] #indiv 33
+
+#combine columns
+count_HH_total <- cbind.data.frame(count_HH_1, count_HH_2, count_HH_3)
+
+#subset by consecutive healthy --> sick
+col_HS_1 = colData[4:8,] #indiv 8
+col_HS_2 = colData[9:12,] #indiv 9
+col_HS_3 = colData[13:17,] #indiv 10
+col_HS_4 = colData[20:23,] #indiv 15
+col_HS_5 = colData[28:32,] #indiv 20
+
+#
+col_HS_total <- rbind.data.frame(col_HS_1, col_HS_2, col_HS_3, col_HS_4, col_HS_5)
+
+#subset by consecutive healthy --> sick
+count_HS_1 = countData[,4:8] #indiv 8
+count_HS_2 = countData[,9:12] #indiv 9
+count_HS_3 = countData[,13:17] #indiv 10
+count_HS_4 = countData[,20:23] #indiv 15
+count_HS_5 = countData[,28:32] #indiv 20
+
+count_HS_total <- cbind.data.frame(count_HS_1, count_HS_2, count_HS_3, count_HS_4, count_HS_5)
+
+
+##############################################################
+
+col_HH_HS<- rbind.data.frame(col_HH_total,col_HS_total)
+count_HH_HS <- cbind.data.frame(count_HH_total, count_HS_total)
+
+##############################################################
+
+ddsTS <- DESeqDataSetFromMatrix(countData = count_HH_HS, colData = col_HH_HS, ~ health + day + health:day)
+ddsTS <- ddsTS[ rowSums(counts(ddsTS)) > 100, ]
+
+#significant results are significant for the interactionn between health and day
+ddsTS <- DESeq(ddsTS, parallel=T, test="LRT", reduced = ~ health + day)
+resTS <- results(ddsTS)
+resTS$symbol <- mcols(ddsTS)$symbol
+
+head(resTS[order(resTS$padj),],4)
+summary(resTS)
+
+#out of 12258 with nonzero total read count
+#adjusted p-value < 0.1
+#LFC > 0 (up)     : 0, 0% 
+#LFC < 0 (down)   : 0, 0% 
+#outliers [1]     : 395, 3.2% 
+#low counts [2]   : 0, 0% 
+#(mean count < 0)
+#[1] see 'cooksCutoff' argument of ?results
+#[2] see 'independentFiltering' argument of ?results
+
+################################################################
+
+#testing
+dds_HH_HS_full <- DESeqDataSetFromMatrix(countData = count_HH_HS, colData = col_HH_HS, design = ~ indiv + health)
+dds_HH_HS_full <- dds_HH_HS_full[ rowSums(counts(dds_HH_HS_full)) > 100, ]
+
+colData(dds_HH_HS_full)$health <- factor(colData(dds_HH_HS_full)$health, levels=c("H","S")) 
+
+dds_HH_HS_full <- DESeq(dds_HH_HS_full)
+res_HH_HS_full <- results(dds_HH_HS_full)
+res_HH_HS_full <- res_HH_HS_full[order(res_HH_HS_full$padj),]
+head(res_HH_HS_full)
+
+summary(res_HH_HS_full)
+
+#out of 12258 with nonzero total read count
+#adjusted p-value < 0.1
+#LFC > 0 (up)     : 3, 0.024% 
+#LFC < 0 (down)   : 27, 0.22% 
+#outliers [1]     : 583, 4.8% 
+#low counts [2]   : 2670, 22% 
+#(mean count < 7)
+#[1] see 'cooksCutoff' argument of ?results
+#[2] see 'independentFiltering' argument of ?results
+
+#############################################################
+
+which(res_HH_HS_full$padj <0.05)
+sig.genes.day <- res_HH_HS_full[which(res_HH_HS_full$padj <0.05),]
+head(sig.genes.day)
+write.csv(t(rownames(sig.genes.day)), "rownames_HH_HS_full.csv")
+
+write.csv(sig.genes.day,"rownames_HH_HS_annotation2.csv", quote=F, row.names=T)
+
+
+gmt_names <- GSA.read.gmt("rownames_HH_HS_full.gmt")
+quartz()
+plot1GS(expr=countsTable, TimePoint=colData$day, 
+        Subject_ID=colData$indiv, gmt=gmt_names,
+        geneset.name="DEgeneset",
+        indiv="genes", clustering=FALSE,
+        time_unit="H",
+        lab.cex=1)
+
+##############################################################
+## Gene annotation 
+
+#see notes for the part that was run on the server
+
+#We need to take the results from DEseq2 and make a table with two columns: gene ID and LFC 
+#Therefore we need to export the results file:
+write.csv(res_HH_HS_full, file = "rownames_HH_HS_annotation4.csv", quote=F, row.names=T)
+
+
+#now we bring all the files we need into R:
+input="rownames_HH_HS_annotation4.csv" 
+goAnnotations="annotation_table.tab" 
+goDatabase="go.obo" 
+goDivision="BP" 
+
+source("gomwu.functions.R")
+
+####
+
+# Calculating stats. It takes ~3 min for MF and BP. Do not rerun it if you just want to replot the data with different cutoffs, go straight to gomwuPlot. If you change any of the numeric values below, delete the files that were generated in previos runs first.
+gomwuStats(input, goDatabase, goAnnotations, goDivision, perlPath="perl", largest=0.1, smallest=5, clusterCutHeight=0.25)
+
+
+stats <- read.csv("MWU_BP_rownames_HH_HS_annotation.csv", header = T)
+
+###################### Plotting results
+library(ape)
+quartz()
+gomwuPlot(input,goAnnotations,goDivision, absValue=-log(0.05,10), level1=0.2, level2=0.1, level3=0.05, txtsize=1.2, treeHeight=0.5,)
+
+
+######################################################################
+
+tcgsa_sim <- TcGSA.LR(expr=count_HH_HS, gmt=gmt_names, design=col_HH_HS, 
+                           subject_name="indiv", time_name="day",
+                           time_func="linear", crossedRandom=FALSE)
+tcgsa_sim
+
+summary(tcgsa_sim)
+
+
+################################################################
+############# PCA plots
+vsd <- varianceStabilizingTransformation(dds_HH_HS_full, blind=FALSE)
+
+plotPCA(vsd, intgroup=c("score"))
+plotPCA(vsd, intgroup=c("health"))
+plotPCA(vsd, intgroup=c("day"))
+plotPCA(vsd, intgroup=c("location"))
+plotPCA(vsd, intgroup=c("health","location"))
+
+sampleDists <- dist(t(assay(vsd)))
+
+library("RColorBrewer")
+sampleDistMatrix <- as.matrix(sampleDists)
+rownames(sampleDistMatrix) <- paste(vsd$indiv, vsd$score, vsd$health, vsd$location, sep="-")
+colnames(sampleDistMatrix) <- NULL
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+library(pheatmap)
+quartz()
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows=sampleDists,
+         clustering_distance_cols=sampleDists,
+         col=colors)
+
+#########################
+##################################################################
+#testing
+dds_HHS <- DESeqDataSetFromMatrix(countData = count_HHS_total, colData = col_HHS_total, design = ~ indiv + health)
+dds_HHS <- dds_HHS[ rowSums(counts(dds_HHS)) > 100, ]
+
+colData(dds_HHS)$health <- factor(colData(dds_HHS)$health, levels=c("H","S")) 
+
+dds_HHS <- DESeq(dds_HHS)
+res_HHS <- results(dds_HHS)
+res_HHS <- res_HHS[order(res_HHS$padj),]
+head(res_HHS)
+
+summary(res_HHS)
+###################################################################
+
+#############################################################
+
+which(res_HHS$padj <0.05)
+sig.genes.day <- res_HHS[which(res_HHS$padj <0.05),]
+head(sig.genes.day)
+write.csv(t(rownames(sig.genes.day)), "rownames_HHS.csv")
+
+write.csv(sig.genes.day,"rownames_HHS.csv", quote=F, row.names=T)
+
+
+gmt_names <- GSA.read.gmt("rownames_HHS.gmt")
+
+gmt_names
+
+plot1GS(expr=countsTable, TimePoint=colData$day, 
+        Subject_ID=colData$indiv, gmt=gmt_names,
+        geneset.name="Geneset1",
+        indiv="genes", clustering=FALSE,
+        time_unit="H",
+        lab.cex=0.7)
+
+```
 
 
 
